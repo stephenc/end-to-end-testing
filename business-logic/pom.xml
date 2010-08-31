@@ -8,18 +8,14 @@
     <version>1.1-SNAPSHOT</version>
   </parent>
   <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
-  <artifactId>webapp</artifactId>
-  <packaging>war</packaging>
-  <name>End To End Testing: Webapp</name>
-  <build>
-    <finalName>webapp</finalName>
-  </build>
+  <artifactId>business-logic</artifactId>
+  <packaging>ejb</packaging>
+  <name>End To End Testing: Business Logic</name>
   <dependencies>
     <dependency>
       <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
       <artifactId>business-interface</artifactId>
       <version>1.1-SNAPSHOT</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
