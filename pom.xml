@@ -7,7 +7,7 @@
 
   <scm>
     <connection>scm:git:git://github.com/stephenc/end-to-end-testing.git</connection>
-    <developerConnection>scm:git:ssh:git@github.com:stephenc/end-to-end-testing.git</developerConnection>
+    <developerConnection>scm:git:git@github.com:stephenc/end-to-end-testing.git</developerConnection>
   </scm>
 
 </project>
