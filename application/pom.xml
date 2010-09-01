@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>end2end-parent</artifactId>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>end2end-parent</artifactId>
+        <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
+        <version>1.1-SNAPSHOT</version>
+    </parent>
     <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
-    <version>1.1-SNAPSHOT</version>
-  </parent>
-  <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
-  <artifactId>application</artifactId>
-  <packaging>ear</packaging>
-  <name>End To End Testing: Application</name>
-  <dependencies>
-    <dependency>
-      <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
-      <artifactId>business-interface</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
-      <artifactId>business-logic</artifactId>
-      <type>ejb</type>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
-      <artifactId>webapp</artifactId>
-      <type>war</type>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
+    <artifactId>application</artifactId>
+    <packaging>ear</packaging>
+    <name>End To End Testing: Application</name>
+    <dependencies>
+        <dependency>
+            <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
+            <artifactId>business-interface</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
+            <artifactId>business-logic</artifactId>
+            <type>ejb</type>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
+            <artifactId>webapp</artifactId>
+            <type>war</type>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
