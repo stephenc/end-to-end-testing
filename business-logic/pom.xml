@@ -3,19 +3,26 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>end2end-parent</artifactId>
         <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
         <version>1.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
+
     <artifactId>business-logic</artifactId>
     <packaging>ejb</packaging>
     <name>End To End Testing: Business Logic</name>
+
     <dependencies>
         <dependency>
             <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
             <artifactId>business-interface</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
+            <artifactId>data</artifactId>
             <version>1.1-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -13,7 +13,6 @@
     <artifactId>jsf-utils</artifactId>
     <name>OpenEJB support for JSF injection</name>
 
-
     <dependencies>
         <dependency>
             <groupId>javax.faces</groupId>

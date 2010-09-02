@@ -17,8 +17,17 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-action>greet</from-action>
+            <from-outcome>greet</from-outcome>
             <to-view-id>/response.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/response.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>goodbye</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
 </faces-config>

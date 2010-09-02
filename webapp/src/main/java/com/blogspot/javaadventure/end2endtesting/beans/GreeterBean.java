@@ -6,7 +6,9 @@
 
 package com.blogspot.javaadventure.end2endtesting.beans;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.transaction.UserTransaction;
 
 import com.blogspot.javaadventure.end2endtesting.business.api.Greeter;
 
@@ -20,8 +22,11 @@ public class GreeterBean {
 
     private String name;
 
-    @EJB(name="greeter")
+    @EJB(name = "greeter")
     private Greeter greeter;
+
+    @Resource(name="openejb:TransactionManager")
+    private UserTransaction ut;
 
     public void setName(String name) {
         this.name = name;
@@ -31,7 +36,16 @@ public class GreeterBean {
         return name;
     }
 
-    public String getGreeting() {
-        return greeter.getGreeting(name);
+    public String getGreeting() throws Exception {
+        final String greeting;
+        ut.begin();
+        try {
+            greeting = greeter.getGreeting(name);
+            ut.commit();
+        } catch (Exception e) {
+            ut.rollback();
+            throw e;
+        }
+        return greeting;
     }
 }

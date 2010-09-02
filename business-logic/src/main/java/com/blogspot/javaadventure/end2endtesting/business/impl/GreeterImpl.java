@@ -18,9 +18,19 @@ package com.blogspot.javaadventure.end2endtesting.business.impl;
 * under the License.
 */
 
+import java.util.Date;
+import java.util.List;
+
 import com.blogspot.javaadventure.end2endtesting.business.api.Greeter;
+import com.blogspot.javaadventure.end2endtesting.data.Visitor;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,7 +41,25 @@ import javax.ejb.Stateless;
 @Stateless(name="greeter")
 public class GreeterImpl implements Greeter {
 
+    @PersistenceContext
+    private EntityManager em;
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public String getGreeting(String user) {
-        return "Hello " + user;
+        final Query query = em.createNamedQuery(Visitor.BY_NAME);
+        query.setParameter("name", user);
+        final Date now = new Date();
+        for (Visitor v: (List<Visitor>) query.getResultList()) {
+            Date last = v.getLastVisit();
+            v.setLastVisit(now);
+            if (last != null) {
+                return "Hello " + v.getName() + ", nice to meet you";
+            } else {
+                return "Hello " + v.getName() + ", so what has happend to you since " + last + "?";
+            }
+        }
+        Visitor v = new Visitor(user, now);
+        em.persist(v);
+        return "Hello " + v.getName() + ", nice to meet you";
     }
 }

@@ -3,15 +3,17 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>end2end-parent</artifactId>
         <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
         <version>1.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
+
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
     <name>End To End Testing: Webapp</name>
+
     <build>
         <finalName>webapp</finalName>
         <plugins>
@@ -68,10 +70,10 @@
                     <artifactId>openejb-core</artifactId>
                     <version>3.1.2</version>
                     <exclusions>
-                        <!--<exclusion>-->
-                            <!--<groupId>org.apache.openjpa</groupId>-->
-                            <!--<artifactId>openjpa</artifactId>-->
-                        <!--</exclusion>-->
+                        <exclusion>
+                            <groupId>org.apache.openjpa</groupId>
+                            <artifactId>openjpa</artifactId>
+                        </exclusion>
                         <!-- this version of activemq is not available from central -->
                         <exclusion>
                             <groupId>org.apache.activemq</groupId>
@@ -156,6 +158,36 @@
                             </exclusion>
                         </exclusions>
                     </dependency>
+                    <!--
+                      Need JPA support and a JPA provider
+                    -->
+
+                    <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-entitymanager</artifactId>
+                        <version>3.4.0.GA</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>commons-logging</groupId>
+                                <artifactId>commons-logging</artifactId>
+                            </exclusion>
+                            <exclusion>
+                                <groupId>javax.transaction</groupId>
+                                <artifactId>jta</artifactId>
+                            </exclusion>
+                            <exclusion>
+                                <groupId>cglib</groupId>
+                                <artifactId>cglib</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                        <version>3.8.0.GA</version>
+                    </dependency>
+
                     <!-- in order to use the 3.1.2 version of openejb, we need to exclude
                          the dependencies provided in jsp-2.1-jetty -->
                     <dependency>
@@ -171,6 +203,24 @@
                     </dependency>
 
                     <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                        <version>1.5.6</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-jdk14</artifactId>
+                        <version>1.5.6</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                        <version>1.5.6</version>
+                    </dependency>
+
+                    <dependency>
                         <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
                         <artifactId>business-interface</artifactId>
                         <version>${project.version}</version>
@@ -183,6 +233,11 @@
                     </dependency>
                     <dependency>
                         <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
+                        <artifactId>data</artifactId>
+                        <version>1.1-SNAPSHOT</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.blogspot.javaadventure.end2endtesting</groupId>
                         <artifactId>jsf-utils</artifactId>
                         <version>${project.version}</version>
                     </dependency>
@@ -190,6 +245,7 @@
             </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.openejb</groupId>
