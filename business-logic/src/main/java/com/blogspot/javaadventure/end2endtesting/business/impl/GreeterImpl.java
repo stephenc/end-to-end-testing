@@ -20,17 +20,16 @@ package com.blogspot.javaadventure.end2endtesting.business.impl;
 
 import java.util.Date;
 import java.util.List;
-
-import com.blogspot.javaadventure.end2endtesting.business.api.Greeter;
-import com.blogspot.javaadventure.end2endtesting.data.Visitor;
-
+import java.util.concurrent.TimeUnit;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
+
+import com.blogspot.javaadventure.end2endtesting.business.api.Greeter;
+import com.blogspot.javaadventure.end2endtesting.data.Visitor;
 
 /**
  * Created by IntelliJ IDEA.
@@ -38,7 +37,7 @@ import javax.persistence.Query;
  * @author Stephen Connolly
  * @since 01-Sep-2010 07:01:42
  */
-@Stateless(name="greeter")
+@Stateless(name = "greeter")
 public class GreeterImpl implements Greeter {
 
     @PersistenceContext
@@ -49,13 +48,27 @@ public class GreeterImpl implements Greeter {
         final Query query = em.createNamedQuery(Visitor.BY_NAME);
         query.setParameter("name", user);
         final Date now = new Date();
-        for (Visitor v: (List<Visitor>) query.getResultList()) {
+        for (Visitor v : (List<Visitor>) query.getResultList()) {
             Date last = v.getLastVisit();
             v.setLastVisit(now);
-            if (last != null) {
+            if (last == null) {
                 return "Hello " + v.getName() + ", nice to meet you";
             } else {
-                return "Hello " + v.getName() + ", so what has happend to you since " + last + "?";
+                long diff = now.getTime() - last.getTime();
+                if (TimeUnit.MILLISECONDS.toSeconds(diff) < 60) {
+                    return "Hello " + v.getName() + ", so what has happend to you in the last " +
+                            TimeUnit.MILLISECONDS.toSeconds(diff) + " second(s)?";
+                }
+                if (TimeUnit.MILLISECONDS.toSeconds(diff) < 60 * 60) {
+                    return "Hello " + v.getName() + ", so what has happend to you in the last " +
+                            TimeUnit.MILLISECONDS.toSeconds(diff) / 60 + " minute(s)?";
+                }
+                if (TimeUnit.MILLISECONDS.toSeconds(diff) < 60 * 60 * 24) {
+                    return "Hello " + v.getName() + ", so what has happend to you in the last " +
+                            TimeUnit.MILLISECONDS.toSeconds(diff) / 60 / 60 + " hour(s)?";
+                }
+                return "Hello " + v.getName() + ", so what has happend to you in the last " +
+                        TimeUnit.MILLISECONDS.toSeconds(diff) / 60 / 60 / 24 + " day(s)?";
             }
         }
         Visitor v = new Visitor(user, now);

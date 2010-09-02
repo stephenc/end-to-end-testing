@@ -25,9 +25,6 @@ public class GreeterBean {
     @EJB(name = "greeter")
     private Greeter greeter;
 
-    @Resource(name="openejb:TransactionManager")
-    private UserTransaction ut;
-
     public void setName(String name) {
         this.name = name;
     }
@@ -37,15 +34,6 @@ public class GreeterBean {
     }
 
     public String getGreeting() throws Exception {
-        final String greeting;
-        ut.begin();
-        try {
-            greeting = greeter.getGreeting(name);
-            ut.commit();
-        } catch (Exception e) {
-            ut.rollback();
-            throw e;
-        }
-        return greeting;
+        return greeter.getGreeting(name);
     }
 }
