@@ -28,6 +28,10 @@ import javax.ejb.Stateless;
  * @author Stephen Connolly
  * @since 01-Sep-2010 07:01:42
  */
-@Stateless
+@Stateless(name="greeter")
 public class GreeterImpl implements Greeter {
+
+    public String getGreeting(String user) {
+        return "Hello " + user;
+    }
 }

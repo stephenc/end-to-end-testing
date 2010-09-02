@@ -18,6 +18,7 @@
         <module>business-logic</module>
         <module>webapp</module>
         <module>application</module>
+        <module>jsf-utils</module>
     </modules>
 
     <build>

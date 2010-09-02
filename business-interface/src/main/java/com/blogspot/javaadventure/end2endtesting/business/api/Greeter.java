@@ -28,4 +28,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface Greeter {
+    String getGreeting(String user);
 }
