@@ -12,6 +12,7 @@
     <scm>
         <connection>scm:git:git://github.com/stephenc/end-to-end-testing.git</connection>
         <developerConnection>scm:git:git@github.com:stephenc/end-to-end-testing.git</developerConnection>
+        <url>http://github.com/stephenc/end-to-end-testing/tree/master/</url>
     </scm>
 
     <modules>
