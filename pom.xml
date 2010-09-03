@@ -22,6 +22,7 @@
         <module>application</module>
         <module>jsf-utils</module>
         <module>data</module>
+        <module>e2e-test</module>
     </modules>
 
     <build>
@@ -55,6 +56,10 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <plugin>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>2.3</version>
                 </plugin>
@@ -86,5 +91,11 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>
