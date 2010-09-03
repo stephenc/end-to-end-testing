@@ -42,6 +42,10 @@
                             <value>{ejbName}</value>
                         </systemProperty>
 
+                        <systemProperty>
+                            <name>data.hibernate.hbm2ddl.auto</name>
+                            <value>create</value>
+                        </systemProperty>
 
                         <systemProperty>
                             <name>java.naming.factory.url.pkgs</name>
